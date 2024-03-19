@@ -1,6 +1,18 @@
-import React from "react"; // Import React
+// WelcomeView.jsx
+import React from 'react';
 
-const WelcomeView = ({ userName, setUserName }) => {
+const WelcomeView = ({ userName, setUserName, setIsGameStarted }) => {
+  const handleStartGame = () => {
+    // Check if username is provided
+    if (!userName.trim()) {
+      alert('Please enter your name.');
+      return;
+    }
+
+    // Start the game
+    setIsGameStarted(true);
+  };
+
   return (
     <div id="welcome-screen">
       <form id="name-form">
@@ -19,7 +31,12 @@ const WelcomeView = ({ userName, setUserName }) => {
             maxLength="15"
           />
         </div>
-        <button className="btn btn-primary" id="start-game-button" type="button">
+        <button
+          className="btn btn-primary"
+          id="start-game-button"
+          type="button"
+          onClick={handleStartGame} 
+        >
           Start Game!
         </button>
       </form>
