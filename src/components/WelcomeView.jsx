@@ -22,5 +22,7 @@ const WelcomeView = (props) => {
       </div>
     );
   };
+    export default WelcomeView;
+
+
   
-  export default WelcomeView;
