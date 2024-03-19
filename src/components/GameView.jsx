@@ -6,10 +6,10 @@ const GameView = (props) => {
         </div>
   
         <form id="game-form">
-          <div class="form-group">
-            <label for="user-selection">Select your choice: </label>
+          <div className="form-group">
+            <label htmlFor="user-selection">Select your choice: </label>
             <select
-              class="custom-select"
+              className="custom-select"
               id="user-selection"
               name="user-selection"
             >
@@ -24,13 +24,13 @@ const GameView = (props) => {
               </option>
             </select>
           </div>
-          <button class="btn btn-success" type="button" id="go-button">
+          <button className="btn btn-success" type="button" id="go-button">
             Go!
           </button>
         </form>
   
         <p id="game-history"></p>
-        <button id="reset-game-button" class="btn btn-secondary">
+        <button id="reset-game-button" className="btn btn-secondary">
           Reset{" "}
         </button>
       </div>
