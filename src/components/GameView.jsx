@@ -1,11 +1,9 @@
 // GameView.jsx
-import React from 'react';
-import RockPaperScissors from '../rock_paper_scissors'; 
+import React, { useState } from 'react';
+import RockPaperScissors from '../rock_paper_scissors';
 
 const GameView = ({
   userName,
-  userChoice,
-  setUserChoice,
   userScore,
   setUserScore,
   cpuScore,
@@ -13,19 +11,27 @@ const GameView = ({
   gameHistory,
   setGameHistory,
 }) => {
-  // Create an instance of RockPaperScissors
+  const [userChoice, setUserChoice] = useState("");
   const rps = new RockPaperScissors(userName);
 
-  // Handle play button click
   const handlePlay = () => {
-    // Implement game logic here
+    if (!userChoice) {
+      alert('Please select your choice.');
+      return;
+    }
+
     const cpuChoice = rps.generateCPUResponse();
     rps.play(userChoice);
 
-    // Update scores and game history
     setUserScore(rps.score.user);
     setCpuScore(rps.score.cpu);
-    setGameHistory([...gameHistory, `User: ${rps.score.user} v CPU: ${rps.score.cpu}`]);
+    setGameHistory([...gameHistory, `${userName}: ${userChoice} vs CPU: ${cpuChoice}`]);
+  };
+
+  const handleReset = () => {
+    setUserScore(0);
+    setCpuScore(0);
+    setGameHistory([]);
   };
 
   return (
@@ -52,7 +58,18 @@ const GameView = ({
         <button className="btn btn-primary" id="play-button" type="button" onClick={handlePlay}>
           Play
         </button>
+        <button className="btn btn-secondary" id="reset-button" type="button" onClick={handleReset}>
+          Reset
+        </button>
       </form>
+      <div id="game-history">
+        <h2>Game History</h2>
+        <ul>
+          {gameHistory.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
